@@ -13,7 +13,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,13 +28,19 @@ public class ConsertoController {
 
     @PostMapping
     @Transactional
-    public void cadastrar(@RequestBody @Valid DadosCadastroConserto dados){
-        repository.save(new Conserto(dados));
+    public ResponseEntity<DetalhamentoConsertoDTO> cadastrar(@RequestBody @Valid DadosCadastroConserto dados,
+                                                             UriComponentsBuilder uriBuilder){
+        Conserto conserto = new Conserto(dados);
+        repository.save(conserto);
+
+        URI uri = uriBuilder.path("/consertos/{id}").buildAndExpand(conserto.getId()).toUri();
+        return ResponseEntity.created(uri).body(new DetalhamentoConsertoDTO(conserto));
     }
 
     @GetMapping
-    public Page<Conserto> listar(Pageable pageable) {
-        return repository.findAll(pageable);
+    public ResponseEntity<Page<Conserto>> listar(Pageable pageable) {
+        Page<Conserto> allConsertos = repository.findAll(pageable);
+        return ResponseEntity.ok(allConsertos);
     }
 
     @GetMapping("/{id}")
@@ -48,8 +56,9 @@ public class ConsertoController {
     }
 
     @GetMapping("resumo")
-    public List<ResumoConsertoDTO> getResumoConsertos() {
-        return repository.findAllByAtivoTrue().stream().map(ResumoConsertoDTO::new).toList();
+    public ResponseEntity<List<ResumoConsertoDTO>> getResumoConsertos() {
+        List<ResumoConsertoDTO> allConsertos = repository.findAllByAtivoTrue().stream().map(ResumoConsertoDTO::new).toList();
+        return ResponseEntity.ok(allConsertos);
     }
 
     @PutMapping
@@ -71,7 +80,7 @@ public class ConsertoController {
 
         if (conserto.isPresent()) {
             conserto.get().excluir();
-            return ResponseEntity.ok().build();
+            return ResponseEntity.noContent().build();
         }
         return ResponseEntity.notFound().build();
     }
