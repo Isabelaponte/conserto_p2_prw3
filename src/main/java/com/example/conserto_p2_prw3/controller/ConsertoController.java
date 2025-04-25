@@ -63,4 +63,16 @@ public class ConsertoController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity<Object> excluir(@PathVariable Long id) {
+        Optional<Conserto> conserto = repository.findById(id);
+
+        if (conserto.isPresent()) {
+            conserto.get().excluir();
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
 }

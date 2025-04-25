@@ -6,5 +6,5 @@ public record DadosMecanico(
         @NotBlank
         String nome,
 
-        String anosExperiencia)
-{ }
+        String anosExperiencia
+) {}

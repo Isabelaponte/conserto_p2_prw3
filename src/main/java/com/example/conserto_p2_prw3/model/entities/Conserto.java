@@ -43,4 +43,6 @@ public class Conserto {
         if(dados.mecanico() != null)
             this.mecanico.atualizarDados(dados.mecanico());
     }
+
+    public void excluir() {this.ativo = false;}
 }
