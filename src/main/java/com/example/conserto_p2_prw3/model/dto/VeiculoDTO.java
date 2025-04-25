@@ -3,7 +3,7 @@ package com.example.conserto_p2_prw3.model.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
-public record DadosVeiculo(
+public record VeiculoDTO(
         @NotBlank
         String marca,
 

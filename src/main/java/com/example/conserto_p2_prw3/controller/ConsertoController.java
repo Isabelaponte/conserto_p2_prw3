@@ -1,7 +1,7 @@
 package com.example.conserto_p2_prw3.controller;
 
 import com.example.conserto_p2_prw3.model.dto.AtualizaConsertoDTO;
-import com.example.conserto_p2_prw3.model.dto.DadosCadastroConserto;
+import com.example.conserto_p2_prw3.model.dto.CadastroConsertoDTO;
 import com.example.conserto_p2_prw3.model.dto.DetalhamentoConsertoDTO;
 import com.example.conserto_p2_prw3.model.dto.ResumoConsertoDTO;
 import com.example.conserto_p2_prw3.model.entities.Conserto;
@@ -28,7 +28,7 @@ public class ConsertoController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<DetalhamentoConsertoDTO> cadastrar(@RequestBody @Valid DadosCadastroConserto dados,
+    public ResponseEntity<DetalhamentoConsertoDTO> cadastrar(@RequestBody @Valid CadastroConsertoDTO dados,
                                                              UriComponentsBuilder uriBuilder){
         Conserto conserto = new Conserto(dados);
         repository.save(conserto);

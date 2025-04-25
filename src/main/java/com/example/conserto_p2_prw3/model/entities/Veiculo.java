@@ -1,6 +1,6 @@
 package com.example.conserto_p2_prw3.model.entities;
 
-import com.example.conserto_p2_prw3.model.dto.DadosVeiculo;
+import com.example.conserto_p2_prw3.model.dto.VeiculoDTO;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +16,7 @@ public class Veiculo {
     private String ano;
     private String cor;
 
-    public Veiculo(DadosVeiculo dados) {
+    public Veiculo(VeiculoDTO dados) {
         this.marca = dados.marca();
         this.modelo = dados.modelo();
         this.ano = dados.ano();

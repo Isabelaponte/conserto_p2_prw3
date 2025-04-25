@@ -1,7 +1,7 @@
 package com.example.conserto_p2_prw3.model.entities;
 
 import com.example.conserto_p2_prw3.model.dto.AtualizaConsertoDTO;
-import com.example.conserto_p2_prw3.model.dto.DadosCadastroConserto;
+import com.example.conserto_p2_prw3.model.dto.CadastroConsertoDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -29,7 +29,7 @@ public class Conserto {
 
     private Boolean ativo;
 
-    public Conserto(DadosCadastroConserto dados) {
+    public Conserto(CadastroConsertoDTO dados) {
         this.ativo = true;
         this.dtEntrada = dados.dtEntrada();
         this.dtSaida = dados.dtSaida();

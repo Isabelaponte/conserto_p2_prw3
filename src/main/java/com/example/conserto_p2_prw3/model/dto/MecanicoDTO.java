@@ -2,7 +2,7 @@ package com.example.conserto_p2_prw3.model.dto;
 
 import jakarta.validation.constraints.NotBlank;
 
-public record DadosMecanico(
+public record MecanicoDTO(
         @NotBlank
         String nome,
 
